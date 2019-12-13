@@ -24,6 +24,8 @@ class Solution {
             for(int j = 0; j < coins.length; j++) {
                 if(coins[j] <= i) {
                     dp[i] = Math.min(dp[i], 1 + dp[i - coins[j]]);
+                } else {
+                    break;
                 }
             }
         }
