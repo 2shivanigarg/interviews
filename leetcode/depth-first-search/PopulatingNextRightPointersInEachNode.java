@@ -82,7 +82,6 @@ class Solution {
                 current.next = temp;
                 temp = current;
 
-
                 if(current.right != null) {
                     currentLevel.add(current.right);
                 }
