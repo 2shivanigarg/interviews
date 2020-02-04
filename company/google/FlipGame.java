@@ -23,10 +23,10 @@ class Solution {
             int nextMoveIndex = 0;
             if(i == 0) {
                 // Get index of 1st ++
-                nextMoveIndex = s.substring("++");
+                nextMoveIndex = s.indexOf("++");
             } else {
                 // Get index of ++ after i
-                nextMoveIndex = s.substring("++", i);
+                nextMoveIndex = s.indexOf("++", i);
             }
 
             if(nextMoveIndex == -1) {
