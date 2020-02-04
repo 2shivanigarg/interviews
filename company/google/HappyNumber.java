@@ -23,7 +23,9 @@ class Solution {
                 int digit = current % 10;   
                 sum += digit * digit;
                 current = current/10;
-            }            
+            }
+            // This check is to know if we have run in an infinite loop where we never get 1
+            // Since we again got to a previously visited number
             if(seen.contains(sum)) {
                 return false;
             }
