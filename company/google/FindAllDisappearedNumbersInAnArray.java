@@ -28,3 +28,28 @@ class Solution {
         return missingNumbers;
     }
 }
+
+/**
+ * Solution without using extra space
+ */
+
+class Solution {
+    public List<Integer> findDisappearedNumbers(int[] nums) {
+        List<Integer> missingNumbers = new ArrayList<>();
+
+        for(int i = 0; i < nums.length; i++) {
+            int absoluteValue = Math.abs(nums[i]);
+            if(nums[absoluteValue - 1] > 0) {
+                nums[absoluteValue - 1] = -nums[absoluteValue - 1];
+            }
+        }
+
+        for(int i = 0; i < nums.length; i++) {
+            if(nums[i] > 0) {
+                missingNumbers.add(i + 1);
+            }
+        }
+
+        return missingNumbers;
+    }
+}
