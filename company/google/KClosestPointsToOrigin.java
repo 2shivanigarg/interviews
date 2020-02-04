@@ -40,7 +40,7 @@ class Solution {
         * d2^2 = (a1 - 0)^2 + (b1 - 0)^2 = a1^2 + b1^2
         * To find which point is closer, we just need to calculate d1^2 - d2^2
         * d1^2 - d2^2 = (a0^2 + b0^2) - (a1^2 + b1^2)
-        * Hence, the comparator does
+        * This is what the comparator does
         **/
         PriorityQueue<int[]> maxHeap = new PriorityQueue<>((a, b) -> (b[0] * b[0] + b[1] * b[1]) - (a[0] * a[0] + a[1] * a[1]));
         
