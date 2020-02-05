@@ -19,7 +19,7 @@ public class MovingAverageFromDataStream {
     Queue<Integer> queue;
 
     /** Initialize your data structure here. */
-    public MovingAverage(int size) {
+    public MovingAverageFromDataStream(int size) {
         this.maxSize = size;
         queue = new LinkedList<Integer>();
     }
