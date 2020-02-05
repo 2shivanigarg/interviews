@@ -12,7 +12,7 @@
 
 class Solution {
     public String nextClosestTime(String time) {
-        int minutes = Integer.parseInt(time.substring(0, 2));
+        int minutes = Integer.parseInt(time.substring(0, 2)) * 60;
         minutes += Integer.parseInt(time.substring(3));
         
         HashSet<Integer> digits = new HashSet<>();
@@ -21,7 +21,9 @@ class Solution {
         }
         
         while(1) {
-            minutes = minutes + 1;
+            // Simulating next time by adding 1 minute to the minutes
+            // % by (24 * 60) so as to wrap time at midnight i.e. if it is 11:59 then it should become 00:00
+            minutes = (minutes + 1) % (24 * 60);
             int[] nextTime = { minutes / 60 / 10, minutes / 60 % 10, minutes % 60 / 10, minutes % 60 % 10};
             
             boolean isValid = true;
