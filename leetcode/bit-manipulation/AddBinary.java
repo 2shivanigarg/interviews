@@ -37,6 +37,7 @@ class Solution {
             // if sum = 0, sum % 2 = 0
             // if sum = 1, sum % 2 = 1
             // if sum = 2, sum % 2 = 0
+            // So, sum % 2 actually gives binary sum of two bits i.e. a + b = sum % 2 where a and b are bits
             // Inserting it at 0th position every time since we add in reverse manner
             sb.insert(0, sum % 2);
             // Whenever sum is 2, sum / 2 will be 1 i.e. we need to carry 1
