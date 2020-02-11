@@ -56,7 +56,6 @@ class Solution {
                     while(left < right && nums[right] == nums[right + 1]) {
                         right--;
                     }
-
                 } else if(nums[i] + nums[left] + nums[right] < 0) {
                     // Moving left ahead to find a greater number
                     left++;
