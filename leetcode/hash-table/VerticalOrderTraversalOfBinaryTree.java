@@ -99,7 +99,7 @@ class Solution {
                 // Sorting in increasing order of x
                 return Integer.compare(this.x, that.x);
             } else if (this.y != that.y) {
-                // Sorting in decreasing order of y
+                // Sorting in decreasing order of y as y keeps on decreasing as the node goes down
                 return Integer.compare(that.y, this.y);
             } else {
                 // Sorting in increasing order of value
