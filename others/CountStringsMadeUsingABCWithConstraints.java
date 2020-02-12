@@ -12,6 +12,9 @@
 //        Input  : n = 4
 //        Output : 39
 
+/**
+ * Google interview question
+ */
 class Solution {
     public int countStrings(int n) {
         return countStringsRecursive(n, 1, 2);
