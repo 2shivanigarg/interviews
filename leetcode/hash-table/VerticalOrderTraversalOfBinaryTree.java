@@ -96,10 +96,13 @@ class Solution {
              * if two nodes are on the same level then they will be sorted
              **/
             if(this.x != that.x) {
+                // Sorting in increasing order of x
                 return Integer.compare(this.x, that.x);
             } else if (this.y != that.y) {
-                return Integer.compare(this.y, that.y);
+                // Sorting in decreasing order of y
+                return Integer.compare(that.y, this.y);
             } else {
+                // Sorting in increasing order of value
                 return Integer.compare(this.val, that.val);
             }
         }
@@ -108,8 +111,8 @@ class Solution {
     public void dfs(TreeNode node, int x, int y) {
         if(node != null) {
             locations.add(new Location(x, y, node.val));
-            dfs(node.left, x - 1, y + 1);
-            dfs(node.right, x + 1, y + 1);
+            dfs(node.left, x - 1, y - 1);
+            dfs(node.right, x + 1, y - 1);
         }
     }
 }
