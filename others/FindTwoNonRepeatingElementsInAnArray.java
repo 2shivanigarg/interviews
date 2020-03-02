@@ -37,7 +37,7 @@ class Solution {
         //we know that in a XOR b, any particular bit is set if that bit is set in either a or b
         //we can use this to divide the array elements into two groups where each group will be responsible
         // to get a and b
-        int xor = nums[0];
+        int xor = 0;
         for(int num : nums) {
             xor ^= num;
         }
