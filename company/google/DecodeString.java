@@ -14,6 +14,50 @@
 
 class Solution {
     public String decodeString(String s) {
+        StringBuilder decoded = new StringBuilder();
+        Stack<Integer> countStack = new Stack<>();
+        Stack<String> decodedStack = new Stack<>();
+
+        int index = 0;
+        while(index < s.length()) {
+            if(Character.isDigit(s.charAt(index))) {
+                int count = 0;
+                while(Character.isDigit(s.charAt(index))) {
+                    count = 10 * count + s.charAt(index) - '0';
+                    index++;
+                }
+                countStack.push(count);
+            } else if(s.charAt(index) == '[') {
+                decodedStack.push(decoded.toString());
+                // Similar to setting as empty string
+                decoded = new StringBuilder();
+                index++;
+            } else if(s.charAt(index) == ']') {
+                StringBuilder temp = new StringBuilder(decodedStack.pop());
+                int repeatTimes = countStack.pop();
+
+                for(int i = 0; i < repeatTimes; i++) {
+                    temp.append(decoded.toString());
+                }
+                // Similar to setting one string to another
+                decoded = new StringBuilder(temp.toString());
+                index++;
+            } else {
+                decoded.append(s.charAt(index));
+                index++;
+            }
+        }
+
+        return decoded.toString();
+    }
+}
+
+/**
+ * Alternate solution - Slower because of string conversions
+ */
+
+class Solution {
+    public String decodeString(String s) {
         String decoded = "";
         Stack<Integer> countStack = new Stack<>();
         Stack<String> decodedStack = new Stack<>();

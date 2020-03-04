@@ -15,6 +15,7 @@ class Solution {
         
         for(int i = 2; i * i < primes.length; i++) {
             if(primes[i]) {
+                // Setting multiple of i to false
                 for(int j = i; j * i < primes.length; j++) {
                     primes[i * j] = false;
                 }

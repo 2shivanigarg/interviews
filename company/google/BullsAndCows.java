@@ -39,6 +39,12 @@ class Solution {
             }
         }
 
-        return bulls + "A" + cows + "B";
+        StringBuilder sb = new StringBuilder();
+        sb.append(bulls);
+        sb.append('A');
+        sb.append(cows);
+        sb.append('B');
+
+        return sb.toString();
     }
 }

@@ -79,12 +79,16 @@ class Node {
 }
 */
 class Solution {
-    HashMap<Integer, Node> map = new HashMap<>();
     public Node cloneGraph(Node node) {
         if(node == null) {
             return null;
         }
 
+        HashMap<Integer, Node> map = new HashMap<>();
+        return dfs(node, map);
+    }
+
+    public Node dfs(Node node, Map<Integer, Node> map) {
         if(map.containsKey(node.val)) {
             return map.get(node.val);
         }
@@ -93,7 +97,7 @@ class Solution {
         map.put(node.val, newNode);
 
         for(Node neighbor: node.neighbors) {
-            newNode.neighbors.add(cloneGraph(neighbor));
+            newNode.neighbors.add(dfs(neighbor, map));
         }
 
         return newNode;
