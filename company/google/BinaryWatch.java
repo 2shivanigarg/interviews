@@ -24,6 +24,33 @@ class Solution {
             for(int j = 0; j < 60; j++) {
                 int totalOneBits = Integer.bitCount(i) + Integer.bitCount(j);
                 if(totalOneBits == num) {
+                    StringBuilder time = new StringBuilder();
+                    time.append(i);
+                    time.append(":");
+                    time.append(((j < 10) ? "0" : ""));
+                    time.append(j);
+                    possibleTimes.add(time.toString());
+                }
+            }
+        }
+
+        return possibleTimes;
+    }
+}
+
+/**
+ * Alternate solution
+ * It takes more time because of String.format()
+ */
+
+class Solution {
+    public List<String> readBinaryWatch(int num) {
+        List<String> possibleTimes = new ArrayList<>();
+
+        for(int i = 0; i < 12; i++) {
+            for(int j = 0; j < 60; j++) {
+                int totalOneBits = Integer.bitCount(i) + Integer.bitCount(j);
+                if(totalOneBits == num) {
                     possibleTimes.add(String.format("%d:%02d", i, j));
                 }
             }
