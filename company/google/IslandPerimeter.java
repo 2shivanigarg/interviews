@@ -10,9 +10,9 @@
 //
 //        Input:
 //        [[0,1,0,0],
-//        [1,1,1,0],
-//        [0,1,0,0],
-//        [1,1,0,0]]
+//         [1,1,1,0],
+//         [0,1,0,0],
+//         [1,1,0,0]]
 //
 //        Output: 16
 //
@@ -27,7 +27,7 @@ class Solution {
                 if(grid[i][j] == 1) {
                     // Perimeter sum of the number of sides open to water
                     perimeter += numNeighbors(grid, i, j);
-                    // Returning perimeter fron here since there is only 1 island
+                    // Returning perimeter from here since there is only 1 island
                     // So, we don't need to process further
                     return perimeter;
                 }
