@@ -25,12 +25,24 @@ class Solution {
             return nums[0];
         }
 
+        // There are two cases here.
+        // 1) 1st element is included and last is not included
+        // 2) 1st is not included and last is included
+        // Therefore, we can 2 dp array for the above 2 scenarios and return the larger of them
+
+        // dp array if we start robbing starting from the first house
+        // which means that 1st element is included and last element is not included
         int[] dpFirst = new int[nums.length + 1];
+        // dp array if we start robbing starting from the second house
+        // which means that 1st element is not included and last element is included
         int[] dpSecond = new int[nums.length + 1];
+
         dpFirst[0] = 0;
+        // Including the 1st element
         dpFirst[1] = nums[0];
 
         dpSecond[0] = 0;
+        // Not including the 1st element
         dpSecond[1] = 0;
 
         for(int i = 2; i <= nums.length; i++) {
@@ -38,6 +50,8 @@ class Solution {
             dpSecond[i] = Math.max(nums[i - 1] + dpSecond[i - 2], dpSecond[i - 1]);
         }
 
+        // In dpFirst, last element is not included, hence checking for the 2nd last element
+        // In dpSecond, last element is included, hence checking for the last element
         return Math.max(dpFirst[nums.length - 1], dpSecond[nums.length]);
     }
 }
