@@ -46,6 +46,11 @@ class Solution {
         dpSecond[1] = 0;
 
         for(int i = 2; i <= nums.length; i++) {
+            // nums[i - 1] = ith element
+            // dp[i - 2] = dp of (i - 2)th element
+            // dp[i - 1] = dp of (i - 1)th element
+            // dp[i] = Math.max(taking the ith element + dp of (i - 2)th element,
+            // dp of (i - 1)th element and not taking ith element)
             dpFirst[i] = Math.max(nums[i - 1] + dpFirst[i - 2], dpFirst[i - 1]);
             dpSecond[i] = Math.max(nums[i - 1] + dpSecond[i - 2], dpSecond[i - 1]);
         }
