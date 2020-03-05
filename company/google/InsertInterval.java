@@ -13,6 +13,44 @@
 //        Explanation: Because the new interval [4,8] overlaps with [3,5],[6,7],[8,10].
 
 class Solution {
+    public int[][] insert(int[][] intervals, int[] newInterval) {
+        List<int[]> result = new ArrayList<>();
+        if (intervals.length == 0) {
+            result.add(newInterval);
+            return result.toArray(new int[result.size()][]);
+        }
+        for (int[] interval : intervals) {
+            if (interval[1] < newInterval[0]) {
+                // Case 1: End of current interval is less than start of new interval
+                // This is the part before the position where new interval needs to be inserted
+                result.add(interval);
+            } else if (interval[0] <= newInterval[1]) {
+                // Case 2: Start of current interval is less than or equal to end of new interval
+                // This is the part where the new interval needs to updated
+                // based on the start and end of the existing intervals
+                // Update the start and end of the new interval
+                newInterval[0] = Math.min(interval[0], newInterval[0]);
+                newInterval[1] = Math.max(interval[1], newInterval[1]);
+            } else if (interval[0] > newInterval[1]) {
+                // Case 3: Start of current interval is greater than end of new interval
+                // This is the part for all the intervals which should come after the new interval
+                // New interval created earlier will be added here
+                // and the existing current interval will be updated as new interval
+                // for it to be added in all further iterations
+                result.add(newInterval);
+                newInterval = interval;
+            }
+        }
+        // Add the last remaining interval
+        result.add(newInterval);
+        return result.toArray(new int[result.size()][]);
+    }
+}
+
+/**
+ * Alternative solution - This has slower runtime
+ */
+class Solution {
     class Interval {
         int start;
         int end;
@@ -42,7 +80,8 @@ class Solution {
             i++;
         }
 
-        // For all the intervals whose start is less than new interval's end, update the interval
+        // For all the intervals whose start is less than or equal to new interval's end,
+        // update the interval
         while(i < intervalsList.size() && intervalsList.get(i).start <= interval.end) {
             interval = new Interval(Math.min(intervalsList.get(i).start, interval.start), Math.max(intervalsList.get(i).end, interval.end));
             intervalsList.remove(i);
