@@ -17,20 +17,20 @@
 //        minStack.top();      --> Returns 0.
 //        minStack.getMin();   --> Returns -2.
 
+class Node {
+    int data;
+    int min;
+    Node next;
+
+    public Node(int data, int min) {
+        this.data = data;
+        this.min = min;
+        this.next = null;
+    }
+}
+
 class MinStack {
     Node head;
-
-    class Node {
-        int data;
-        int min;
-        Node next;
-
-        public Node(int data, int min) {
-            this.data = data;
-            this.min = min;
-            this.next = null;
-        }
-    }
 
     /** initialize your data structure here. */
     public MinStack() {
