@@ -16,6 +16,31 @@ class Solution {
         if(nums.length == 1) {
             return nums[0];
         }
+
+        int count = 0;
+        int candidate = -1;
+
+        for (int num : nums)
+        {
+            if (count == 0) {
+                candidate = num;
+            }
+
+            count += (candidate == num)? 1 : -1;
+        }
+
+        return candidate;
+    }
+}
+
+/**
+ * Alternate solution - slower and with extra memory
+ */
+class Solution {
+    public int majorityElement(int[] nums) {
+        if(nums.length == 1) {
+            return nums[0];
+        }
         
         HashMap<Integer, Integer> map = new HashMap<>();
         for(int num: nums) {
