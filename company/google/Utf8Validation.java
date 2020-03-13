@@ -33,22 +33,22 @@
 
 class Solution {
     public boolean validUtf8(int[] data) {
-        int count = 0;
+        int remainingBytesToValidate = 0;
 
         for(int i : data) {
             // This check is for validating the 1st byte
-            if(count == 0) {
+            if(remainingBytesToValidate == 0) {
                 // Getting 1st 3 bits by i >> 5
                 // If 1st 3 bits are 0b110 (0b means all 0s), then it should be 2 byte character
                 // Remaining number of bytes should be 1. Hence, we'll update the count to 1
                 if(i >> 5 == 0b110) {
-                    count = 1;
+                    remainingBytesToValidate = 1;
                 } else if(i >> 4 == 0b1110) { // Check 1st 4 bits to be 0b1110
                     // Update remaining bytes to validate to 2
-                    count = 2;
+                    remainingBytesToValidate = 2;
                 } else if(i >> 3 == 0b11110) { // Check 1st 5 bits to be 0b11110
                     // Update the remaining bytes to validate to 3
-                    count = 3;
+                    remainingBytesToValidate = 3;
                 } else if(i >> 7 == 0b1) { // Checking if 1st bit is 0b1
                     // Validating 1 byte character
                     // For 1 byte character, if 1st bit is 1 then return false as 1st bit should be 0
@@ -61,11 +61,11 @@ class Solution {
                 if(i >> 6 != 0b10) {
                     return false;
                 }
-                count--;
+                remainingBytesToValidate--;
             }
         }
 
         // Encoding is correct if count = 0 i.e. we have successfully validated all the bytes
-        return count == 0;
+        return remainingBytesToValidate == 0;
     }
 }
