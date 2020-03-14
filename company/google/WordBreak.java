@@ -26,9 +26,10 @@ class Solution {
         // at ith index from some index j where j < i
         // Eg. s = "leetcode", wordDict = ["leet", "code"]
         // dp: 0 1 2 3 4 5 6 7 8
+        //       l e e t c o d e
         //     T F F F T F F F T
         // Here, dp[4] and dp[8] is true which means that string can be segmented into a dictionary word
-        // at 4th and 8th character i.e. at 'c' and 'e'.
+        // at 4th and 8th character i.e. at 'c' and 'e' i.e. dp[5] and dp[8]
         boolean[] dp = new boolean[s.length() + 1];
 
         dp[0] = true;
