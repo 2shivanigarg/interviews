@@ -22,6 +22,35 @@
 
 class Solution {
     public boolean wordBreak(String s, List<String> wordDict) {
+        Map<String, Boolean> map = new HashMap<>();
+        map.put("", true);
+        return helper(s, wordDict, map);
+    }
+
+    boolean helper(String s, List<String> wordDict, Map<String, Boolean> map)
+    {
+        if(map.containsKey(s)) {
+            return map.get(s);
+        }
+
+        for(String word: wordDict)
+        {
+            if(s.startsWith(word) && helper(s.substring(word.length()), wordDict, map))
+            {
+                map.put(s, true);
+                return map.get(s);
+            }
+        }
+        map.put(s, false);
+        return map.get(s);
+    }
+}
+
+/**
+ * Alternative solution - slower
+ */
+class Solution {
+    public boolean wordBreak(String s, List<String> wordDict) {
         // Boolean array where ith index is true if the array can be segmented into a dictionary word
         // at ith index from some index j where j < i
         // Eg. s = "leetcode", wordDict = ["leet", "code"]
