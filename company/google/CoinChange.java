@@ -23,6 +23,7 @@ class Solution {
         for(int i = 1; i <= amount; i++) {
             for(int j = 0; j < coins.length; j++) {
                 if(coins[j] <= i) {
+                    // Simulating taking or not taking the coin
                     dp[i] = Math.min(dp[i], 1 + dp[i - coins[j]]);
                 } else {
                     break;

@@ -31,6 +31,9 @@
 class Solution {
     public boolean isAlienSorted(String[] words, String order) {
         int[] alphabet = new int[26];
+        // Storing the position of each character in the array
+        // Eg. alphabet['h' - 'a'] = alphabet[8] = index of h in order = 0
+        // alphabet[8] = 0
         for(int i = 0; i < order.length(); i++) {
             alphabet[order.charAt(i) - 'a'] = i;
         }
