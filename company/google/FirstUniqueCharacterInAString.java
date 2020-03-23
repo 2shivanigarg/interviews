@@ -11,6 +11,31 @@
 
 class Solution {
     public int firstUniqChar(String s) {
+        if(s == null || s.length() == 0) {
+            return -1;
+        }
+
+        int[] count = new int[26];
+        for(char c: s.toCharArray()) {
+            count[c - 'a']++;
+        }
+
+        char[] charArray = s.toCharArray();
+        for(int i = 0; i < charArray.length; i++) {
+            if(count[charArray[i] - 'a'] == 1) {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+}
+
+/**
+ * Alternative solution - slower runtime
+ */
+class Solution {
+    public int firstUniqChar(String s) {
         Map<Character, Integer> map = new HashMap<>();
         for(int i = 0; i < s.length(); i++) {
             char current = s.charAt(i);
