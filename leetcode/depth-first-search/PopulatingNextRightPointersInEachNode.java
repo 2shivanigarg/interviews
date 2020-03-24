@@ -64,6 +64,28 @@ class Node {
     }
 };
 */
+/*
+// Definition for a Node.
+class Node {
+    public int val;
+    public Node left;
+    public Node right;
+    public Node next;
+
+    public Node() {}
+
+    public Node(int _val) {
+        val = _val;
+    }
+
+    public Node(int _val, Node _left, Node _right, Node _next) {
+        val = _val;
+        left = _left;
+        right = _right;
+        next = _next;
+    }
+};
+*/
 class Solution {
     public Node connect(Node root) {
         if(root == null) {
@@ -76,12 +98,14 @@ class Solution {
         while(!queue.isEmpty()) {
             Queue<Node> currentLevel = new LinkedList<>();
             Node temp = null;
+            int size = queue.size();
 
-            while(!queue.isEmpty()) {
+            for(int i = 0; i < size; i++) {
                 Node current = queue.remove();
                 current.next = temp;
                 temp = current;
 
+                // Adding the right node first so that it can become next of its left node
                 if(current.right != null) {
                     currentLevel.add(current.right);
                 }
@@ -90,7 +114,35 @@ class Solution {
                     currentLevel.add(current.left);
                 }
             }
+
             queue = currentLevel;
+        }
+
+        return root;
+    }
+}
+
+/**
+ * Alternative solution - faster runtime
+ */
+class Solution {
+    public Node connect(Node root) {
+        if(root == null) {
+            return null;
+        }
+
+        Node left = root.left;
+        Node right = root.right;
+
+        if(left != null) {
+            left.next = right;
+            connect(left);
+            connect(right);
+            while(left.right != null) {
+                left = left.right;
+                right = right.left;
+                left.next = right;
+            }
         }
 
         return root;

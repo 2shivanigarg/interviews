@@ -39,12 +39,18 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
 class Solution {
-    boolean balanced = true;
-
     public boolean isBalanced(TreeNode root) {
-        height(root);
-        return balanced;
+        return height(root) != -1;
     }
 
     public int height(TreeNode root) {
@@ -55,8 +61,8 @@ class Solution {
         int leftHeight = height(root.left);
         int rightHeight = height(root.right);
 
-        if(Math.abs(leftHeight - rightHeight) > 1) {
-            balanced = false;
+        if(leftHeight == -1 || rightHeight == -1 || Math.abs(leftHeight - rightHeight) > 1) {
+            return -1;
         }
 
         return Math.max(leftHeight, rightHeight) + 1;
