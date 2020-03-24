@@ -32,28 +32,38 @@
  *     TreeNode(int x) { val = x; }
  * }
  */
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
 class Solution {
-    int max = Integer.MIN_VALUE;
-
     public int maxPathSum(TreeNode root) {
         if(root == null) {
             return 0;
         }
 
-        maxPathRecursive(root);
-        return max;
+        int[] max = new int[1];
+        max[0] = Integer.MIN_VALUE;
+
+        maxPathRecursive(root, max);
+        return max[0];
     }
 
-    public int maxPathRecursive(TreeNode root) {
+    public int maxPathRecursive(TreeNode root, int[] max) {
         if(root == null) {
             return 0;
         }
 
-        int left = Math.max(maxPathRecursive(root.left), 0);
-        int right = Math.max(maxPathRecursive(root.right), 0);
+        int leftSum = Math.max(maxPathRecursive(root.left, max), 0);
+        int rightSum = Math.max(maxPathRecursive(root.right, max), 0);
 
-        max = Math.max(max, root.val + left + right);
+        max[0] = Math.max(max[0], root.val + leftSum + rightSum);
 
-        return root.val + Math.max(left, right);
+        return root.val + Math.max(leftSum, rightSum);
     }
 }
