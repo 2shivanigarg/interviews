@@ -28,15 +28,17 @@ class Solution {
     }
 
     public void subsetsWithDupRecursive(int[] nums, List<List<Integer>> result, int index, List<Integer> current) {
-        result.add(current);
+        result.add(new ArrayList<>(current));
 
         for(int i = index; i < nums.length; i++) {
             if(i > index && nums[i] == nums[i - 1]) {
                 continue;
             }
-            ArrayList<Integer> newCurrent = new ArrayList<>(current);
-            newCurrent.add(nums[i]);
-            subsetsWithDupRecursive(nums, result, i + 1, newCurrent);
+            // Simulating taking the number
+            current.add(nums[i]);
+            subsetsWithDupRecursive(nums, result, i + 1, current);
+            // Simulating not taking the number
+            current.remove(current.size() - 1);
         }
     }
 }
