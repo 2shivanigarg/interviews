@@ -21,29 +21,25 @@
 //        The input string length won't exceed 1000.
 
 class Solution {
-    class Result {
-        int count = 0;
-    }
-
     public int countSubstrings(String s) {
         if(s == null || s.length() == 0) {
             return 0;
         }
 
-        Result result = new Result();
+        int[] result = new int[1];
         for(int i = 0; i < s.length(); i++) {
             extendPalindrome(s, i, i, result);
             extendPalindrome(s, i, i + 1, result);
         }
 
-        return result.count;
+        return result[0];
     }
 
-    public void extendPalindrome(String s, int left, int right, Result result) {
+    public void extendPalindrome(String s, int left, int right, int[] result) {
         while(left >= 0 && right < s.length() && s.charAt(left) == s.charAt(right)) {
             left--;
             right++;
-            result.count++;
+            result[0]++;
         }
     }
 }

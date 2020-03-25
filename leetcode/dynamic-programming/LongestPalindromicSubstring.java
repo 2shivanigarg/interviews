@@ -21,9 +21,17 @@ class Solution {
         boolean[][] dp = new boolean[len][len];
 
         String longest = null;
+        // step represents the string length taken into consideration at any moment
         for(int step = 0; step < len; step++) {
+            // Loop from i = 0 till i + step < len
+            // Taking strings of length step from different i such that i + step < len
             for(int i = 0; i + step < len; i++) {
+                // i = starting index of the string
+                // j = ending index of the string
                 int j = i + step;
+                // j - i <= 2 is the case for strings of length less than or equal to 2
+                // dp[i + 1][j - 1] represents the substring except the character at i and j
+                // i.e. from i + 1 to j - 1
                 if(s.charAt(i) == s.charAt(j) && (j - i <= 2 || dp[i + 1][j - 1])) {
                     dp[i][j] = true;
 
@@ -37,4 +45,4 @@ class Solution {
 
         return longest;
     }
-}g
+}
