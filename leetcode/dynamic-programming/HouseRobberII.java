@@ -28,7 +28,7 @@ class Solution {
         // There are two cases here.
         // 1) 1st element is included and last is not included
         // 2) 1st is not included and last is included
-        // Therefore, we can 2 dp array for the above 2 scenarios and return the larger of them
+        // Therefore, we can have 2 dp arrays for the above 2 scenarios and return the larger of them
 
         // dp array if we start robbing starting from the first house
         // which means that 1st element is included and last element is not included

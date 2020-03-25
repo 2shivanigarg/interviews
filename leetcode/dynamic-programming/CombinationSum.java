@@ -53,6 +53,7 @@ class Solution {
         for(int i = startIndex; i < candidates.length; i++) {
             // Simulating taking the element
             currentList.add(candidates[i]);
+            // Passing i without incrementing as same number can be taken any number of times
             combinationSumRecursive(candidates, target - candidates[i], i, currentList, result);
             // Simulating not taking the element
             // Last element was the most recently added element

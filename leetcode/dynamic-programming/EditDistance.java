@@ -39,6 +39,8 @@ class Solution {
             dp[0][j] = j;
         }
 
+        // (i + 1)th character of dp is equivalent to ith character of word
+        // since dp array's size is 1 more than the length of the word
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < m; j++) {
                 if(word1.charAt(j) == word2.charAt(i)) {
