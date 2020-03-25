@@ -58,6 +58,8 @@ class Solution {
         result[0] = root.val + left[1] + right[1];
         // When root is not robbed and root's children are robbed
         // Taking maximum from left and right
+        // It can be either left as root or from left's children
+        // And right as root or from right's children
         result[1] = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);
 
         return result;
