@@ -15,24 +15,53 @@
 
 // All given inputs are in lowercase letters a-z.
 
+/**
+ * Solution I
+ */
 class Solution {
     public String longestCommonPrefix(String[] strs) {
         StringBuilder longestCommonPrefix = new StringBuilder();
-        if(strs == null || strs.length == 0) {
+        if (strs == null || strs.length == 0) {
             return longestCommonPrefix.toString();
         }
-                        
-        for(int i = 0; i < strs[0].length(); i++) {
+
+        for (int i = 0; i < strs[0].length(); i++) {
             String firstString = strs[0];
-            for(int j = 1; j < strs.length; j++) {                
-                
-                if(i >= strs[j].length() || firstString.charAt(i) != strs[j].charAt(i)) {
+            for (int j = 1; j < strs.length; j++) {
+
+                if (i >= strs[j].length() || firstString.charAt(i) != strs[j].charAt(i)) {
                     return longestCommonPrefix.toString();
                 }
             }
-            longestCommonPrefix.append(firstString.charAt(i));            
+            longestCommonPrefix.append(firstString.charAt(i));
         }
-        
+
         return longestCommonPrefix.toString();
+    }
+}
+
+/**
+ * Solution II: Faster solution
+ */
+class Solution {
+    public String longestCommonPrefix(String[] a) {
+        int size = a.length;
+
+        if (size == 0)
+            return "";
+
+        if (size == 1)
+            return a[0];
+
+        Arrays.sort(a);
+
+        int end = Math.min(a[0].length(), a[size - 1].length());
+
+        int i = 0;
+        while (i < end && a[0].charAt(i) == a[size - 1].charAt(i))
+            i++;
+
+        String pre = a[0].substring(0, i);
+        return pre;
     }
 }

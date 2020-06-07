@@ -1,4 +1,4 @@
-//iven a string array words, find the maximum value of length(word[i]) * length(word[j]) where the two words do not share common letters. You may assume that each word will contain only lower case letters. If no such two words exist, return 0.
+//Given a string array words, find the maximum value of length(word[i]) * length(word[j]) where the two words do not share common letters. You may assume that each word will contain only lower case letters. If no such two words exist, return 0.
 //
 //        Example 1:
 //
@@ -18,7 +18,7 @@
 
 class Solution {
     public int maxProduct(String[] words) {
-        if(words == null || words.length == 0) {
+        if (words == null || words.length == 0) {
             return 0;
         }
 
@@ -33,19 +33,19 @@ class Solution {
         // then the 1st is set to 1, so on and so forth.
         int[] value = new int[length];
 
-        for(int i = 0; i < length; i++) {
+        for (int i = 0; i < length; i++) {
             String word = words[i];
-            for(int j = 0; j < word.length(); j++) {
+            for (int j = 0; j < word.length(); j++) {
                 // Setting ith bit -> Set kth bit: s |= (1 << k);
                 value[i] |= 1 << (word.charAt(j) - 'a');
             }
         }
 
-        for(int i = 0; i < length - 1; i++) {
-            for(int j = 1; j < length; j++) {
+        for (int i = 0; i < length - 1; i++) {
+            for (int j = 1; j < length; j++) {
                 // Doing & of value[i] and value[j]. If it is 0 it means that there is no 1 at similar
                 // bit positions which means that there are no similar characters in both the words.
-                if((value[i] & value[j]) == 0 && (words[i].length() * words[j].length()) > max) {
+                if ((value[i] & value[j]) == 0 && (words[i].length() * words[j].length()) > max) {
                     max = words[i].length() * words[j].length();
                 }
             }
