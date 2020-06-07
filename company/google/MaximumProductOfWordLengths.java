@@ -42,7 +42,7 @@ class Solution {
         }
 
         for (int i = 0; i < length - 1; i++) {
-            for (int j = 1; j < length; j++) {
+            for (int j = i + 1; j < length; j++) {
                 // Doing & of value[i] and value[j]. If it is 0 it means that there is no 1 at similar
                 // bit positions which means that there are no similar characters in both the words.
                 if ((value[i] & value[j]) == 0 && (words[i].length() * words[j].length()) > max) {
